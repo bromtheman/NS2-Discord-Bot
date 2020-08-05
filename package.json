@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/bromtheman/NS2-Discord-Bot/issues"
   },
-  "homepage": "https://github.com/bromtheman/NS2-Discord-Bot#readme"
+  "homepage": "https://github.com/bromtheman/NS2-Discord-Bot#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0"
+  }
 }
