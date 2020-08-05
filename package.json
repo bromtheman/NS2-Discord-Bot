@@ -1,0 +1,19 @@
+{
+  "name": "ns2bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for Natural Selection 2 that can fetch hive score.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bromtheman/NS2-Discord-Bot.git"
+  },
+  "author": "Jacob",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bromtheman/NS2-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/bromtheman/NS2-Discord-Bot#readme"
+}
