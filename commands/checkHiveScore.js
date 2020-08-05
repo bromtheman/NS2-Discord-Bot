@@ -8,7 +8,10 @@ module.exports = {
   description: 'Check the hive skill for the passed Steam Id.',
   async execute(msg, args) {
     const steamId = args[0]
-    if (!steamId) msg.reply('Please provide a steamId.')
+    if (!steamId) {
+      msg.reply('Please provide a steamId.')
+      return
+    } 
     try {
       msg.reply('Fetching your hive score!')
       const response = await axios.get(`http://hive2.ns2cdt.com/api/get/playerData/${steamId}`)
