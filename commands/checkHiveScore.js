@@ -13,20 +13,26 @@ const readUserInput = async (args, msg) => {
     const steamId3 = steamFormatters.formatSteamIDToID3(steamId)
     return steamFormatters.formatSteamID3ToProfileId(steamId3)
   } else {
+        // This isn't a profile url. Check if it is a steamId.
+        // If not, try to see if it a valid steam id.
     if (steamValidation.REGEX_STEAMID.test(args[0])) {
-      msg.reply('falls into test 1')
-      return
+      const steamId3 = steamFormatters.formatSteamIDToID3(args[0])
+      return steamFormatters.formatSteamID3ToProfileId(steamId3)
     }
     else if (steamValidation.REGEX_STEAMID3.test(args[0])) {
-      msg.reply('Falls into test 2')
+      return steamFormatters.formatSteamID3ToProfileId(args[0])
     }
     else if (steamValidation.REGEX_STEAMID64.test(args[0])) {
-      msg.reply('Falls into test 3')
+      // They gave us a valid steam id 64
+      const steamId = steamFormatters.formatSteamID64ToSteamID(args[0])
+      const steamId3 = steamFormatters.formatSteamIDToID3(steamId)
+      return steamFormatters.formatSteamID3ToProfileId(steamId3)
     } else {
-      msg.reply('Falls out of tests')
+      // Assume they gave us a valid steam id
+      const steamId = await getSteamID(msg, args[0])
+      const steamId3 = steamFormatters.formatSteamIDToID3(steamId)
+      return steamFormatters.formatSteamID3ToProfileId(steamId3)
     }
-    console.warn("Fell into else.")
-    // This isn't a profile url. Check if it is a steamId, if not throw it out.
   }
 
 }
@@ -44,7 +50,7 @@ module.exports = {
       msg.reply(`Your hive score: ${response.data.skill}.`)
     } catch (error) {
       console.warn(error)
-      msg.reply(`Something went wrong!\nUnable to fetch Hive score for SteamId: ${steamId}.`)
+      msg.reply(`Something went wrong!\nUnable to fetch Hive score.`)
     }
   },
 };
