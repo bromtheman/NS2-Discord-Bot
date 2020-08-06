@@ -17,6 +17,8 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
+  if(!msg.content.startsWith('!')) return
+  // If the message doesn't start with ! ignore it.
   const args = msg.content.split(/ +/);
   const command = args.shift().toLowerCase();
   console.info(`Called command: ${command}`);

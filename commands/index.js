@@ -1,4 +1,5 @@
 module.exports = {
-  Ping: require('./ping'),
-  Hive: require('./checkHiveScore')
+  ping: require('./ping'),
+  hive: require('./checkHiveScore'),
+  steam: require('./steamCheck')
 }
