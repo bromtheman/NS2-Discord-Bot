@@ -17,7 +17,8 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if(!msg.content.startsWith('!')) return
+  if (msg.channel.name.toLowerCase() !== 'hiver') return
+  if (!msg.content.startsWith('!')) return
   // If the message doesn't start with ! ignore it.
   const args = msg.content.split(/ +/);
   const command = args.shift().toLowerCase();
@@ -26,6 +27,12 @@ bot.on('message', msg => {
   if (!bot.commands.has(command)) return;
 
   try {
+    if (msg.content.toLowerCase() === '!help') {
+      // Cannot import index.js from help.js as it is a circle dependency, 
+      // so we have to pass the bot commands specially here.
+      bot.commands.get(command).execute(msg, botCommands);
+      return
+    }
     bot.commands.get(command).execute(msg, args);
   } catch (error) {
     console.error(error);

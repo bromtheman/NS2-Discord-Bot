@@ -10,6 +10,7 @@ module.exports = async function (msg, userId) {
         vanityUrl: userId
       }
     })
+    console.log(response.data)
     const { steamid } = response.data.response
     if (!steamid) throw new Error('No steam id.')
     // formatSteamIDToID3(steamid)
